@@ -23,12 +23,8 @@ const NFCReader = ({ children }) => {
   }, []);
 
   return (
-    <div className="w-screen h-screen bg-[#3232fa]">
-      {supported && (
-        <h1 className="text-xl text-[#fafafa] w-screen h-screen text-middle">
-          {serialNumber}
-        </h1>
-      )}
+    <div className="">
+      {supported && <h1 className="text-xl ">{serialNumber}</h1>}
       {children}
     </div>
   );
