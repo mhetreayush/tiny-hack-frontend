@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Illustration from "./Illustration.svg";
+import axios from "axios"
 
 const LoginPage = ({ onClick, onChange, value }) => {
   return (
@@ -39,8 +40,11 @@ const NFCReader = ({ children }) => {
     }
     const ndef = new window.NDEFReader();
     await ndef.scan();
-    ndef.addEventListener("reading", (card) => {
-      setSerialNumber(card.serialNumber);
+    ndef.addEventListener("reading", async (card) => {
+      const response = await axios.patch(
+        "https://acm-tinyhack-backend-production-ff47.up.railway.app/habit/tag/" + card.serialNumber
+      )
+      window.location.replace(window.location.href.split('user')[0] + (`habit/${response.data._id}`))
     });
   }
 
