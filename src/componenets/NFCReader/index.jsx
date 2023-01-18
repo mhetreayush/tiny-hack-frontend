@@ -3,7 +3,7 @@ import {useEffect, useState} from "react"
 const NFCReader = ({children}) => {
   const [ndefReader, setNdefReader] = useState(undefined);
   const [supported, setSupported] = useState(true)
-  const [serialNumber, setSerialNumber] = useState("SERIAL NUMBER")
+  const [serialNumber, setSerialNumber] = useState("SERIAL NUMBRE")
 
   useEffect(() => {
     async function startScanning(){
