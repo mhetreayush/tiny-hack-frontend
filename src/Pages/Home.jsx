@@ -8,6 +8,8 @@ import PageHeading from "../Components/PageHeading";
 import PageWrapper from "../Components/PageWrapper";
 import CustomModal from "../Components/CustomModal";
 import { BsFillPlusCircleFill } from "react-icons/bs";
+import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 import { useState } from "react";
 const Home = () => {
   const { userData } = useSelector((state) => state.userData);
@@ -22,6 +24,26 @@ const Home = () => {
       <CustomModal modalOn={modalOn} setModalOn={setModalOn}>
         <div>Hi</div>
       </CustomModal>
+
+      <div>
+        {userData.length === 0 && <div>No Data</div>}
+        {Children.toArray(
+          userData?.map((data) => {
+            return (
+              <div className="rounded-md p-4 bg-[#FAF5FF]">
+                <h1 className="text-xl mb-6 font-medium">{data.hobby}</h1>
+                <div className="flex w-full justify-between items-center text-sm">
+                  <div>
+                    Status:{" "}
+                    <span className="text-[#905DE6]">{data.status}</span>
+                  </div>
+                  <div>{data.streak}</div>
+                </div>
+              </div>
+            );
+          })
+        )}
+      </div>
       <div
         onClick={() => setModalOn(true)}
         className="text-button fixed bottom-5 right-5"
