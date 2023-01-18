@@ -3,7 +3,7 @@ import {useEffect, useState} from "react"
 const NFCReader = ({children}) => {
   const [ndefReader, setNdefReader] = useState(undefined);
   const [supported, setSupported] = useState(true)
-  const [serialNumber, setSerialNumber] = useState("SERIAL NUMBRE")
+  const [serialNumber, setSerialNumber] = useState("TAP TO SCAN")
   async function startScanning(){
     if (!("NDEFReader" in window)) {
       setSupported(false)
@@ -21,7 +21,7 @@ const NFCReader = ({children}) => {
 
   return (
     <div className="w-screen h-screen bg-[#3232fa]">
-    {supported &&<h1 className="text-xl text-[#fafafa]" onClick={startScanning}>{serialNumber}</h1>}
+    {supported &&<h1 className="text-xl text-[#fafafa] w-screen h-screen text-middle" onClick={startScanning}>{serialNumber}</h1>}
       {children} 
     </div>
   )
