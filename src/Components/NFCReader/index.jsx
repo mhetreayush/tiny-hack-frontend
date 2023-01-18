@@ -52,16 +52,15 @@ const NFCReader = ({ children }) => {
 
   return (
     <div className="flex flex-col justify-start items-center absolute top-0 left-0 w-screen h-screen bg-[#ffffff]">
-      {!username && (
-        <LoginPage
+    {
+      username  || (window.location.href.split("/").length > 4)? children : <LoginPage
           onClick={handleNext}
           onChange={(e) => {
             setTempUsername(e.target.value);
           }}
           value={tempUsername}
         />
-      )}
-      {children}
+    }
     </div>
   );
 };

@@ -25,17 +25,17 @@ const App = () => {
   return (
     <div className="p-4">
       <BrowserRouter>
-        {/* <NFCReader> */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/user/:username" element={<Home />} />
-          <Route path="/output" element={<Output />} />
-          <Route
-            path={`/habit/:_id`}
-            element={<Output data={stats} />}
-          />
-        </Routes>
-        {/* </NFCReader> */}
+        <NFCReader> 
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/user/:username" element={<Home />} />
+            <Route path="/output" element={<Output />} />
+            <Route
+              path={`/habit/:_id`}
+              element={<Output data={stats} />}
+            />
+          </Routes>
+        </NFCReader> 
       </BrowserRouter>
     </div>
   );
