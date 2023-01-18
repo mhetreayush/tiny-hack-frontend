@@ -3,11 +3,11 @@ import {useEffect, useState} from "react"
 const NFCReader = ({children}) => {
   const [ndefReader, setNdefReader] = useState(undefined);
   const [supported, setSupported] = useState(true)
-  const [serialNumber, setSerialNumber] = useState(true)
+  const [serialNumber, setSerialNumber] = useState("SERIAL NUMBER")
 
   useEffect(() => {
     async function startScanning(){
-      const ndef = new NDEFReader();
+      const ndef = new window.NDEFReader();
       await ndef.scan();
       ndef.addEventListener("reading", (card) => {
         
