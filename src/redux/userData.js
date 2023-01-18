@@ -1,10 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userData: {
-    name: "John Doe",
-    age: 30,
-  },
+  userData: [
+    {
+      hobby: "Gym",
+      status: "Active",
+      streak: 0,
+    },
+  ],
 };
 
 export const userReducer = createSlice({
