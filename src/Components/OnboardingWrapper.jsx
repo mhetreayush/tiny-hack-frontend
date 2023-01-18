@@ -9,7 +9,7 @@ const OnboardingWrapper = ({ title, image, description, index }) => {
         <p className="my-2">{description}</p>
       </div>
       <Link
-        to={index + 1 !== 4 ? `/onboarding/${index + 1}` : "/home"}
+        to={index + 1 !== 4 ? `/onboarding/${index + 1}` : "/"}
         className="text-button fixed bottom-5 right-5 rounded-full p-2"
       >
         <GrFormNext size={50} />
