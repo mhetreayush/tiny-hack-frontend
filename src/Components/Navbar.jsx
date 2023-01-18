@@ -12,6 +12,7 @@ import ListItemText from "@mui/material/ListItemText";
 // import InboxIcon from "@mui/icons-material/MoveToInbox";
 // import MailIcon from "@mui/icons-material/Mail";
 import { AiOutlineMenu } from "react-icons/ai";
+import PageHeading from "./PageHeading";
 export default function SwipeableTemporaryDrawer() {
   const [state, setState] = React.useState({
     top: false,
@@ -40,20 +41,7 @@ export default function SwipeableTemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              {/* <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon> */}
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {["Hobby"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               {/* <ListItemIcon>
@@ -88,7 +76,7 @@ export default function SwipeableTemporaryDrawer() {
           ))}
         </div>
         <div>
-          <h1 className="text-xl">Today</h1>
+          <PageHeading title="Today" />
         </div>
       </div>
       {/* <div className="flex w-full my-6"> */}

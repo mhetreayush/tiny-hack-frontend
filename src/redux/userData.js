@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userData: [
     {
+      id: 1,
       hobby: "Gym",
       status: "Active",
       streak: 0,
