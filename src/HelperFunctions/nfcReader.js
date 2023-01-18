@@ -30,6 +30,7 @@ const onReading = ({ message, serialNumber }) => {
       case "url":
         // TODO: Read URL record with record data.
         console.log("URL:", record.data);
+        alert("URL:", record.data);
         break;
       default:
       // TODO: Handle other records with record data.
@@ -44,6 +45,7 @@ const onWrite = async () => {
       records: [{ recordType: "text", data: "Hellow World!" }],
     });
     console.log(`Value Saved!`);
+    alert(`Value Saved!`);
   } catch (error) {
     console.log(error);
   }
