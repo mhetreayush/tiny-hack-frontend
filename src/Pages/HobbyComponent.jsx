@@ -8,8 +8,10 @@ import { AiOutlineHeart } from "react-icons/ai";
 import axios from "axios";
 import userData from "../redux/userData";
 import { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 
+import { IoIosArrowBack } from "react-icons/io";
+import { FiTrash2 } from "react-icons/fi";
 const StreakDiv = ({ value, text }) => {
   return (
     <div className="bg-[#F0E0FF] p-5 rounded-md flex flex-col gap-y-2">
@@ -24,15 +26,15 @@ const StreakDiv = ({ value, text }) => {
 
 const HobbyComponent = () => {
   const { userData } = useSelector((state) => state.userData);
-  const {_id} = useParams()
-  const [hobby, setHobby] = useState({streak: 0});
+  const { _id } = useParams();
+  const [hobby, setHobby] = useState({ streak: 0 });
   useEffect(() => {
     async function getStats() {
       const stats = await axios.get(
-        "https://acm-tinyhack-backend-production-ff47.up.railway.app/habit/stats/" + _id
-      
+        "https://acm-tinyhack-backend-production-ff47.up.railway.app/habit/stats/" +
+          _id
       );
-      setHobby(stats.data)
+      setHobby(stats.data);
     }
     getStats();
   }, [hobby]);
@@ -41,14 +43,18 @@ const HobbyComponent = () => {
     <PageWrapper>
       <div className="flex justify-between w-full items-center">
         <div className="flex gap-x-3 items-center">
-          Icon
+          <Link to="/">
+            <IoIosArrowBack size={20} />
+          </Link>
           <PageHeading title="Statistics" />
         </div>
-        <div>delete</div>
+        <div>
+          <FiTrash2 />
+        </div>
       </div>
       <div>
         {/* <h1>{name}</h1> */}
-        <h1>Ayush</h1>
+        <h1 className="text-4xl mb-4 font-semibold text-gray-700">Gym</h1>
         <img src={streakCalendar} alt="" />
       </div>
       <div className="grid grid-cols-2 gap-x-4">

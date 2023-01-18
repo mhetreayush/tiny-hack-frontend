@@ -30,7 +30,7 @@ const ComponentModal = ({ children, modalOn, setModalOn }) => {
       <Modal
         BackdropProps={{
           style: {
-            backgroundColor: "white",
+            backgroundColor: "black",
             opacity: 0.8,
           },
         }}
@@ -40,17 +40,7 @@ const ComponentModal = ({ children, modalOn, setModalOn }) => {
         aria-describedby="modal-modal-description"
       >
         <ClickAwayListener onClickAway={modalOn}>
-          <Box sx={style}>
-            <div className="w-full py-2 px-2 bg-primary rounded-t-xl flex justify-end">
-              <button
-                className="text-white  p-2 "
-                onClick={() => setModalOn(false)}
-              >
-                <AiOutlineClose size={22} color="white" />
-              </button>
-            </div>
-            {children}
-          </Box>
+          <Box sx={style}>{children}</Box>
         </ClickAwayListener>
       </Modal>
     </div>

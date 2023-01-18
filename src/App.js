@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import OnboardingWrapper from "./Components/OnboardingWrapper";
 const App = () => {
   const { userData } = useSelector((state) => state.userData);
   const [stats, setStats] = useState([]);
@@ -22,20 +23,51 @@ const App = () => {
     }
     getStats();
   }, []);
+  const onboarding = [
+    {
+      title: "Track Your Goal",
+      description: `Don't worry if you have trouble determining your goals, We can help you determine your goals and track your goals`,
+      image: require("./assets/onboarding1.png"),
+    },
+    {
+      title: "Track Your Goal",
+      description: `Don't worry if you have trouble determining your goals, We can help you determine your goals and track your goals`,
+      image: require("./assets/onboarding2.png"),
+    },
+    {
+      title: "Track Your Goal",
+      description: `Don't worry if you have trouble determining your goals, We can help you determine your goals and track your goals`,
+      image: require("./assets/onboarding3.png"),
+    },
+    {
+      title: "Track Your Goal",
+      description: `Don't worry if you have trouble determining your goals, We can help you determine your goals and track your goals`,
+      image: require("./assets/onboarding4.png"),
+    },
+  ];
   return (
     <div className="p-4">
       <BrowserRouter>
-        <NFCReader> 
+        <NFCReader>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/user/:username" element={<Home />} />
             <Route path="/output" element={<Output />} />
-            <Route
-              path={`/habit/:_id`}
-              element={<Output data={stats} />}
-            />
+            <Route path={`/habit/:_id`} element={<Output data={stats} />} />
+            {onboarding.map((item, index) => (
+              <Route
+                path={`/onboarding/${index + 1}`}
+                element={
+                  <OnboardingWrapper
+                    title={item.title}
+                    image={item.image}
+                    description={item.description}
+                    index={index + 1}
+                  />
+                }
+              />
+            ))}
           </Routes>
-        </NFCReader> 
+        </NFCReader>
       </BrowserRouter>
     </div>
   );
