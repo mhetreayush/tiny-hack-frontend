@@ -17,7 +17,9 @@ const NFCReader = ({children}) => {
   }
 
   useEffect(() => {
-    window.addEventListener("load", (event) => {});
+    window.addEventListener("load", (event) => {
+      startScanning()
+    });
   }, [])
 
   return (
