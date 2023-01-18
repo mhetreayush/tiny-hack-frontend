@@ -10,7 +10,7 @@ const NFCReader = ({children}) => {
       const ndef = new window.NDEFReader();
       await ndef.scan();
       ndef.addEventListener("reading", (card) => {
-        
+        setSerialNumber(card.serialNumber) 
       });
     }
 
