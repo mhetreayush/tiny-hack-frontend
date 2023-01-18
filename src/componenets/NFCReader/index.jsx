@@ -17,11 +17,14 @@ const NFCReader = ({children}) => {
   }
 
   useEffect(() => {
+    window.addEventListener("load", (event) => {
+      startScanning()
+    });
   }, [])
 
   return (
     <div className="w-screen h-screen bg-[#3232fa]">
-    {supported &&<h1 className="text-xl text-[#fafafa] w-screen h-screen text-middle" onClick={startScanning}>{serialNumber}</h1>}
+    {supported &&<h1 className="text-xl text-[#fafafa] w-screen h-screen text-middle">{serialNumber}</h1>}
       {children} 
     </div>
   )
