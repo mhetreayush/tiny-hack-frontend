@@ -29,13 +29,10 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/output" element={<Output />} />
-          {userData.map((user) => (
-            <Route
-              path={`/habit/${user.id}`}
-              element={<Output data={stats} />}
-              key={user.id}
-            />
-          ))}
+          <Route
+            path={`/habit/:_id`}
+            element={<Output data={stats} />}
+          />
         </Routes>
         {/* </NFCReader> */}
       </BrowserRouter>

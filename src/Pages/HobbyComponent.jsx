@@ -7,7 +7,8 @@ import streakCalendar from "../assets/streakCalendar.png";
 import { AiOutlineHeart } from "react-icons/ai";
 import axios from "axios";
 import userData from "../redux/userData";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom'
 
 const StreakDiv = ({ value, text }) => {
   return (
@@ -21,22 +22,20 @@ const StreakDiv = ({ value, text }) => {
   );
 };
 
-const HobbyComponent = ({ hobby }) => {
+const HobbyComponent = () => {
   const { userData } = useSelector((state) => state.userData);
+  const {_id} = useParams()
+  const [hobby, setHobby] = useState({streak: 0});
   useEffect(() => {
     async function getStats() {
       const stats = await axios.get(
-        "https://acm-tinyhack-backend-production-ff47.up.railway.app/habit/stats/" +
-          "63c7c7a600c42e2ce1367e22"
+        "https://acm-tinyhack-backend-production-ff47.up.railway.app/habit/stats/" + _id
+      
       );
-      // const stats = await axios.get(
-      //   "https://acm-tinyhack-backend-production-ff47.up.railway.app/habit/stats/" +
-      //     userData.id
-      // );
-      console.log(stats);
+      setHobby(stats.data)
     }
     getStats();
-  }, []);
+  }, [hobby]);
 
   return (
     <PageWrapper>
@@ -53,8 +52,8 @@ const HobbyComponent = ({ hobby }) => {
         <img src={streakCalendar} alt="" />
       </div>
       <div className="grid grid-cols-2 gap-x-4">
-        <StreakDiv value={8} text="Streaks Completed" />
-        <StreakDiv value={16} text="Maximum Streak" />
+        <StreakDiv value={hobby.streak} text="Streaks Completed" />
+        <StreakDiv value={hobby.streak} text="Maximum Streak" />
       </div>
       <div>
         <h1>Yearly Statistics</h1>
