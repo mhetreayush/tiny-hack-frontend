@@ -12,14 +12,27 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
 import Navbar from "../Components/Navbar";
 import { useState } from "react";
+import {useParams, useNavigate} from "react-router-dom"
+import axios from "axios"
+
 const Home = () => {
-  const { userData } = useSelector((state) => state.userData);
+  const navigate = useNavigate()
+  const [hobbies, setHobbies] = useState([])
+  const { username } = useParams()
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log(userData);
-  });
+    async function getHobbeies(){
+      const response = await axios.get(
+        "https://acm-tinyhack-backend-production-ff47.up.railway.app/habit/" + username
+      )
+      console.log(response)
+      setHobbies(response.data)
+    }
+    getHobbeies()
+  }, []);
+
   const [modalOn, setModalOn] = useState(false);
-  //   setName("Home");
+
   return (
     <>
       <Navbar />
@@ -29,17 +42,18 @@ const Home = () => {
         </CustomModal>
 
         <div>
-          {userData.length === 0 && <div>No Data</div>}
+          {hobbies.length === 0 && <div>No Data</div>}
           {Children.toArray(
-            userData?.map((data) => {
+            hobbies?.map((data) => {
               return (
-                <Link to={`habit/${data.id}`}>
-                  <div className="rounded-md p-4 bg-[#F0E0FF]">
-                    <h1 className="text-xl mb-6 font-medium">{data.hobby}</h1>
+                  <div className="rounded-md p-4 bg-[#F0E0FF] m-4" onClick={() => {
+                    window.location.replace(window.location.href.split('user')[0] + (`habit/${data._id}`))
+                  }}>
+                    <h1 className="text-xl mb-6 font-medium">{data.name}</h1>
                     <div className="flex w-full justify-between items-center text-sm">
                       <div>
                         Status:{" "}
-                        <span className="text-[#905DE6]">{data.status}</span>
+                        <span className="text-[#905DE6]">{data.status || "Pending"}</span>
                       </div>
                       <div className="flex gap-x-3 items-center">
                         <AiOutlineHeart size={15} />
@@ -49,7 +63,6 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
-                </Link>
               );
             })
           )}

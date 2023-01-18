@@ -28,6 +28,7 @@ const App = () => {
         {/* <NFCReader> */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/user/:username" element={<Home />} />
           <Route path="/output" element={<Output />} />
           <Route
             path={`/habit/:_id`}
